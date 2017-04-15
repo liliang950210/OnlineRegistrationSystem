@@ -1,8 +1,5 @@
-package com.demo.controller;
+package com.onlineRegister.controller;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -10,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.demo.model.User;
-import com.demo.service.UserService;
-import com.demo.util.Message;
+import com.onlineRegister.service.UserService;
+import com.onlineRegister.util.Message;
 
 /**
  * @author chuankunYi
  * email:yichuankun@qq.com
- *2016年7月25日 下午7:30:16
+ *2016�?7�?25�? 下午7:30:16
  */
 @Controller
 @RequestMapping("/user")

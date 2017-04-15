@@ -1,6 +1,6 @@
-package com.demo.dao;
+package com.onlineRegister.dao;
 
-import com.demo.model.User;
+import com.onlineRegister.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);

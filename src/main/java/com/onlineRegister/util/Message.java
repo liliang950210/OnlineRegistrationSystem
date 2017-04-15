@@ -1,4 +1,4 @@
-package com.demo.util;
+package com.onlineRegister.util;
 
 import java.util.HashMap;
 import java.util.Map;

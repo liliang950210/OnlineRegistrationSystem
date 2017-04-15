@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.onlineRegister.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.onlineRegister.model.Schedule" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="doctor_id" property="doctorId" jdbcType="BIGINT" />
+    <result column="book_date" property="bookDate" jdbcType="TIMESTAMP" />
+    <result column="book_time" property="bookTime" jdbcType="INTEGER" />
+    <result column="book_people" property="bookPeople" jdbcType="INTEGER" />
+    <result column="booked_people" property="bookedPeople" jdbcType="INTEGER" />
+    <result column="book_money" property="bookMoney" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, doctor_id, book_date, book_time, book_people, booked_people, book_money
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from schedule
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.onlineRegister.model.Schedule" >
+    insert into schedule (id, doctor_id, book_date, 
+      book_time, book_people, booked_people, 
+      book_money)
+    values (#{id,jdbcType=BIGINT}, #{doctorId,jdbcType=BIGINT}, #{bookDate,jdbcType=TIMESTAMP}, 
+      #{bookTime,jdbcType=INTEGER}, #{bookPeople,jdbcType=INTEGER}, #{bookedPeople,jdbcType=INTEGER}, 
+      #{bookMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.onlineRegister.model.Schedule" >
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="bookDate != null" >
+        book_date,
+      </if>
+      <if test="bookTime != null" >
+        book_time,
+      </if>
+      <if test="bookPeople != null" >
+        book_people,
+      </if>
+      <if test="bookedPeople != null" >
+        booked_people,
+      </if>
+      <if test="bookMoney != null" >
+        book_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=BIGINT},
+      </if>
+      <if test="bookDate != null" >
+        #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookTime != null" >
+        #{bookTime,jdbcType=INTEGER},
+      </if>
+      <if test="bookPeople != null" >
+        #{bookPeople,jdbcType=INTEGER},
+      </if>
+      <if test="bookedPeople != null" >
+        #{bookedPeople,jdbcType=INTEGER},
+      </if>
+      <if test="bookMoney != null" >
+        #{bookMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.onlineRegister.model.Schedule" >
+    update schedule
+    <set >
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=BIGINT},
+      </if>
+      <if test="bookDate != null" >
+        book_date = #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookTime != null" >
+        book_time = #{bookTime,jdbcType=INTEGER},
+      </if>
+      <if test="bookPeople != null" >
+        book_people = #{bookPeople,jdbcType=INTEGER},
+      </if>
+      <if test="bookedPeople != null" >
+        booked_people = #{bookedPeople,jdbcType=INTEGER},
+      </if>
+      <if test="bookMoney != null" >
+        book_money = #{bookMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.onlineRegister.model.Schedule" >
+    update schedule
+    set doctor_id = #{doctorId,jdbcType=BIGINT},
+      book_date = #{bookDate,jdbcType=TIMESTAMP},
+      book_time = #{bookTime,jdbcType=INTEGER},
+      book_people = #{bookPeople,jdbcType=INTEGER},
+      booked_people = #{bookedPeople,jdbcType=INTEGER},
+      book_money = #{bookMoney,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

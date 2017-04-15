@@ -1,12 +1,12 @@
-package com.demo.service.imp;
+package com.onlineRegister.service.imp;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.UserMapper;
-import com.demo.model.User;
-import com.demo.service.UserService;
+import com.onlineRegister.dao.UserMapper;
+import com.onlineRegister.model.User;
+import com.onlineRegister.service.UserService;
 
 /**
  * @author chuankunYi

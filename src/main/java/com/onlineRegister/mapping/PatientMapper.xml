@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.onlineRegister.dao.PatientMapper" >
+  <resultMap id="BaseResultMap" type="com.onlineRegister.model.Patient" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+    <result column="patient_phone" property="patientPhone" jdbcType="VARCHAR" />
+    <result column="patient_address" property="patientAddress" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, patient_name, patient_phone, patient_address, sex, idcard
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from patient
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.onlineRegister.model.Patient" >
+    insert into patient (id, user_id, patient_name, 
+      patient_phone, patient_address, sex, 
+      idcard)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{patientName,jdbcType=VARCHAR}, 
+      #{patientPhone,jdbcType=VARCHAR}, #{patientAddress,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, 
+      #{idcard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.onlineRegister.model.Patient" >
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+      <if test="patientPhone != null" >
+        patient_phone,
+      </if>
+      <if test="patientAddress != null" >
+        patient_address,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientPhone != null" >
+        #{patientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="patientAddress != null" >
+        #{patientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.onlineRegister.model.Patient" >
+    update patient
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientPhone != null" >
+        patient_phone = #{patientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="patientAddress != null" >
+        patient_address = #{patientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.onlineRegister.model.Patient" >
+    update patient
+    set user_id = #{userId,jdbcType=BIGINT},
+      patient_name = #{patientName,jdbcType=VARCHAR},
+      patient_phone = #{patientPhone,jdbcType=VARCHAR},
+      patient_address = #{patientAddress,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=BIT},
+      idcard = #{idcard,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

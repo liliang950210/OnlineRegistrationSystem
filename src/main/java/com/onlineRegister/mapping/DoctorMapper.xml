@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.onlineRegister.dao.DoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.onlineRegister.model.Doctor" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="doctor_level" property="doctorLevel" jdbcType="VARCHAR" />
+    <result column="hospital_id" property="hospitalId" jdbcType="BIGINT" />
+    <result column="room_id" property="roomId" jdbcType="BIGINT" />
+    <result column="doctor_description" property="doctorDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, doctor_name, doctor_level, hospital_id, room_id, doctor_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.onlineRegister.model.Doctor" >
+    insert into doctor (id, doctor_name, doctor_level, 
+      hospital_id, room_id, doctor_description
+      )
+    values (#{id,jdbcType=BIGINT}, #{doctorName,jdbcType=VARCHAR}, #{doctorLevel,jdbcType=VARCHAR}, 
+      #{hospitalId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{doctorDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.onlineRegister.model.Doctor" >
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="doctorLevel != null" >
+        doctor_level,
+      </if>
+      <if test="hospitalId != null" >
+        hospital_id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="doctorDescription != null" >
+        doctor_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorLevel != null" >
+        #{doctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorDescription != null" >
+        #{doctorDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.onlineRegister.model.Doctor" >
+    update doctor
+    <set >
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorLevel != null" >
+        doctor_level = #{doctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        hospital_id = #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorDescription != null" >
+        doctor_description = #{doctorDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.onlineRegister.model.Doctor" >
+    update doctor
+    set doctor_name = #{doctorName,jdbcType=VARCHAR},
+      doctor_level = #{doctorLevel,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      doctor_description = #{doctorDescription,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

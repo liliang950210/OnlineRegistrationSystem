@@ -1,6 +1,6 @@
-package com.demo.service;
+package com.onlineRegister.service;
 
-import com.demo.model.User;
+import com.onlineRegister.model.User;
 
 /**
  * @author chuankunYi
