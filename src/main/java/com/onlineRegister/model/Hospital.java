@@ -1,5 +1,7 @@
 package com.onlineRegister.model;
 
+import java.util.Date;
+
 public class Hospital {
     private Long id;
 
@@ -16,6 +18,10 @@ public class Hospital {
     private String hospitalImage;
 
     private String hospitalIntroduction;
+
+    private Integer isDelete;
+
+    private Date deleteTime;
 
     public Long getId() {
         return id;
@@ -79,5 +85,21 @@ public class Hospital {
 
     public void setHospitalIntroduction(String hospitalIntroduction) {
         this.hospitalIntroduction = hospitalIntroduction == null ? null : hospitalIntroduction.trim();
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
     }
 }

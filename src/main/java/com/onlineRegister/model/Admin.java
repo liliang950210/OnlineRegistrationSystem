@@ -3,7 +3,7 @@ package com.onlineRegister.model;
 public class Admin {
     private Long id;
 
-    private String manaerName;
+    private String manageName;
 
     private String passwd;
 
@@ -15,12 +15,12 @@ public class Admin {
         this.id = id;
     }
 
-    public String getManaerName() {
-        return manaerName;
+    public String getManageName() {
+        return manageName;
     }
 
-    public void setManaerName(String manaerName) {
-        this.manaerName = manaerName == null ? null : manaerName.trim();
+    public void setManageName(String manageName) {
+        this.manageName = manageName == null ? null : manageName.trim();
     }
 
     public String getPasswd() {

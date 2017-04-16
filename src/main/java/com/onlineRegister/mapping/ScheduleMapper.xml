@@ -9,9 +9,12 @@
     <result column="book_people" property="bookPeople" jdbcType="INTEGER" />
     <result column="booked_people" property="bookedPeople" jdbcType="INTEGER" />
     <result column="book_money" property="bookMoney" jdbcType="DECIMAL" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, doctor_id, book_date, book_time, book_people, booked_people, book_money
+    id, doctor_id, book_date, book_time, book_people, booked_people, book_money, is_delete, 
+    delete_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -26,10 +29,12 @@
   <insert id="insert" parameterType="com.onlineRegister.model.Schedule" >
     insert into schedule (id, doctor_id, book_date, 
       book_time, book_people, booked_people, 
-      book_money)
+      book_money, is_delete, delete_time
+      )
     values (#{id,jdbcType=BIGINT}, #{doctorId,jdbcType=BIGINT}, #{bookDate,jdbcType=TIMESTAMP}, 
       #{bookTime,jdbcType=INTEGER}, #{bookPeople,jdbcType=INTEGER}, #{bookedPeople,jdbcType=INTEGER}, 
-      #{bookMoney,jdbcType=DECIMAL})
+      #{bookMoney,jdbcType=DECIMAL}, #{isDelete,jdbcType=INTEGER}, #{deleteTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.onlineRegister.model.Schedule" >
     insert into schedule
@@ -55,6 +60,12 @@
       <if test="bookMoney != null" >
         book_money,
       </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +88,12 @@
       </if>
       <if test="bookMoney != null" >
         #{bookMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -101,6 +118,12 @@
       <if test="bookMoney != null" >
         book_money = #{bookMoney,jdbcType=DECIMAL},
       </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -111,7 +134,9 @@
       book_time = #{bookTime,jdbcType=INTEGER},
       book_people = #{bookPeople,jdbcType=INTEGER},
       booked_people = #{bookedPeople,jdbcType=INTEGER},
-      book_money = #{bookMoney,jdbcType=DECIMAL}
+      book_money = #{bookMoney,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -9,9 +9,12 @@
     <result column="patient_address" property="patientAddress" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="BIT" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, patient_name, patient_phone, patient_address, sex, idcard
+    id, user_id, patient_name, patient_phone, patient_address, sex, idcard, delete_time, 
+    is_delete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -26,10 +29,12 @@
   <insert id="insert" parameterType="com.onlineRegister.model.Patient" >
     insert into patient (id, user_id, patient_name, 
       patient_phone, patient_address, sex, 
-      idcard)
+      idcard, delete_time, is_delete
+      )
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{patientName,jdbcType=VARCHAR}, 
       #{patientPhone,jdbcType=VARCHAR}, #{patientAddress,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, 
-      #{idcard,jdbcType=VARCHAR})
+      #{idcard,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.onlineRegister.model.Patient" >
     insert into patient
@@ -55,6 +60,12 @@
       <if test="idcard != null" >
         idcard,
       </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +88,12 @@
       </if>
       <if test="idcard != null" >
         #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +118,12 @@
       <if test="idcard != null" >
         idcard = #{idcard,jdbcType=VARCHAR},
       </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -111,7 +134,9 @@
       patient_phone = #{patientPhone,jdbcType=VARCHAR},
       patient_address = #{patientAddress,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=BIT},
-      idcard = #{idcard,jdbcType=VARCHAR}
+      idcard = #{idcard,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

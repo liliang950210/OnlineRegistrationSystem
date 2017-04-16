@@ -27,7 +27,7 @@ public class Message {
 	 */
 	public static Object getMessage(){
 		Map<String , Object> map = new HashMap<String, Object>();
-		map.put("code", 1);
+		map.put("code", 0);
 		map.put("error", "");
 		map.put("date", "");
 		return map;
@@ -38,7 +38,7 @@ public class Message {
 	 */
 	public static Object getMessage(Object date){
 		Map<String , Object> map = new HashMap<String, Object>();
-		map.put("code", 1);
+		map.put("code", 0);
 		map.put("error", "");
 		map.put("date", date);
 		return map;

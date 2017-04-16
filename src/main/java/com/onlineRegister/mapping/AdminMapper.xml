@@ -3,13 +3,13 @@
 <mapper namespace="com.onlineRegister.dao.AdminMapper" >
   <resultMap id="BaseResultMap" type="com.onlineRegister.model.Admin" >
     <result column="id" property="id" jdbcType="BIGINT" />
-    <result column="manaer_name" property="manaerName" jdbcType="VARCHAR" />
+    <result column="manage_name" property="manageName" jdbcType="VARCHAR" />
     <result column="passwd" property="passwd" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.onlineRegister.model.Admin" >
-    insert into admin (id, manaer_name, passwd
+    insert into admin (id, manage_name, passwd
       )
-    values (#{id,jdbcType=BIGINT}, #{manaerName,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{manageName,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.onlineRegister.model.Admin" >
@@ -18,8 +18,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="manaerName != null" >
-        manaer_name,
+      <if test="manageName != null" >
+        manage_name,
       </if>
       <if test="passwd != null" >
         passwd,
@@ -29,8 +29,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="manaerName != null" >
-        #{manaerName,jdbcType=VARCHAR},
+      <if test="manageName != null" >
+        #{manageName,jdbcType=VARCHAR},
       </if>
       <if test="passwd != null" >
         #{passwd,jdbcType=VARCHAR},

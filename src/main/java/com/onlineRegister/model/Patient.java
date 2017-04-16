@@ -1,5 +1,7 @@
 package com.onlineRegister.model;
 
+import java.util.Date;
+
 public class Patient {
     private Long id;
 
@@ -14,6 +16,10 @@ public class Patient {
     private Boolean sex;
 
     private String idcard;
+
+    private Date deleteTime;
+
+    private Integer isDelete;
 
     public Long getId() {
         return id;
@@ -69,5 +75,21 @@ public class Patient {
 
     public void setIdcard(String idcard) {
         this.idcard = idcard == null ? null : idcard.trim();
+    }
+
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }
