@@ -16,5 +16,7 @@ public interface DoctorService {
 	public Doctor selectById(Long id);
 	
 	public List<Doctor> selectAll(Page page);
+	
+	public List<Doctor> selectByHospitalAndRoom(Doctor doctor,Page page);
 
 }

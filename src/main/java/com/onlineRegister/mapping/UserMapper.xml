@@ -6,9 +6,10 @@
     <result column="passwd" property="passwd" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="patient_id" property="patientId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, passwd, phone, patient_id
+    id, passwd, phone, patient_id, username
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.onlineRegister.model.User" >
     insert into user (id, passwd, phone, 
-      patient_id)
+      patient_id, username)
     values (#{id,jdbcType=BIGINT}, #{passwd,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{patientId,jdbcType=BIGINT})
+      #{patientId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.onlineRegister.model.User" >
     insert into user
@@ -41,6 +42,9 @@
       <if test="patientId != null" >
         patient_id,
       </if>
+      <if test="username != null" >
+        username,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="patientId != null" >
         #{patientId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="patientId != null" >
         patient_id = #{patientId,jdbcType=BIGINT},
       </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -76,7 +86,8 @@
     update user
     set passwd = #{passwd,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      patient_id = #{patientId,jdbcType=BIGINT}
+      patient_id = #{patientId,jdbcType=BIGINT},
+      username = #{username,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

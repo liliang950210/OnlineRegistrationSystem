@@ -53,4 +53,9 @@ public class DoctorServiceImp implements DoctorService{
 		return doctorMapper.selectAllDoctor(page.getPage());
 	}
 
+	public List<Doctor> selectByHospitalAndRoom(Doctor doctor, Page page) {
+		// TODO Auto-generated method stub
+		return doctorMapper.selectByHospitalAndRoom(doctor.getHospitalId(), doctor.getRoomId(), page.getPage());
+	}
+
 }

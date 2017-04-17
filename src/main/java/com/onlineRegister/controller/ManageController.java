@@ -17,6 +17,7 @@ import com.onlineRegister.service.AdminService;
 import com.onlineRegister.service.DoctorService;
 import com.onlineRegister.service.HospitalService;
 import com.onlineRegister.service.NewsService;
+import com.onlineRegister.service.OrderService;
 import com.onlineRegister.service.ScheduleService;
 import com.onlineRegister.util.Const;
 import com.onlineRegister.util.Message;
@@ -36,6 +37,8 @@ public class ManageController {
 	private NewsService newsService;
 	@Resource
 	private AdminService adminService;
+	@Resource
+	private OrderService orderService;
 	
 	@RequestMapping("/addHospital")
 	@ResponseBody
@@ -49,11 +52,12 @@ public class ManageController {
 	public Object checkHospital(Hospital hospital,Page page){
 		
 		if(hospital.getHospitalName() != null){
-			return Message.getMessage(hospitalService.selectByName(hospital.getHospitalName()));
+			return Message.getMessage(hospitalService.selectByName(hospital.getHospitalName(),page));
 		}else if(hospital.getHospitalAreaId() != null){
 			return Message.getMessage(hospitalService.selectByAreaId(hospital.getHospitalAreaId(), page));
+		}else{
+			return Message.getMessage(hospitalService.selectAll(page));
 		}
-		return Message.getMessageParmNull();
 	}
 	
 	@RequestMapping("/modifyHospital")
@@ -111,6 +115,14 @@ public class ManageController {
 			return Message.getMessage(scheduleService.selectByHospitalId(hospitalId, page));
 		}
 		
+	}
+	
+	@RequestMapping("/getDoctor")
+	@ResponseBody
+	public Object getDoctor(Doctor doctor,Page page){
+		Object data = doctorService.selectByHospitalAndRoom(doctor, page);
+		
+		return Message.getMessage(data);
 	}
 	
 	@RequestMapping("/addSchedule")
@@ -181,4 +193,22 @@ public class ManageController {
 		return Message.getMessage();
 	}
 	
+	@RequestMapping("/getRecord")
+	@ResponseBody
+	public Object getRecord(Long patientId,Page page){
+		if(patientId == null){
+			return Message.getMessage(orderService.getAllRecord(page));
+		}else{
+			return Message.getMessage(orderService.getRecordByPatientId(patientId, page));
+		}
+	}
+	@RequestMapping("/getOrder")
+	@ResponseBody
+	public Object getOrder(Long  orderId,Page page){
+		if(orderId == null){
+			return Message.getMessage(orderService.getAllRecord(page));
+		}else{
+			return Message.getMessage(orderService.getRecordByPatientId(orderId, page));
+		}
+	}
 }

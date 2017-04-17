@@ -1,0 +1,1 @@
+Page 对象在server层调用dao层时调用getPage方法用于计算起始位置

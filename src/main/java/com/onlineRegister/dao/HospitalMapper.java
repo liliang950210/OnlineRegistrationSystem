@@ -21,9 +21,12 @@ public interface HospitalMapper {
 
     int updateByPrimaryKey(Hospital record);
     
-    @Select("SELECT * FROM hospital WHERE hospital_name LIKE CONCAT('%',#{name},'%')")
-    List<Hospital> selectByName(@Param("name")String name);
+    @Select("SELECT * FROM hospital WHERE hospital_name LIKE CONCAT('%',#{name},'%') AND is_delete = '0' LIMIT #{p.startPosition},#{p.pageSize}")
+    List<Hospital> selectByName(@Param("name")String name,@Param("p")Page page);
     
-    @Select("SELECT * FROM hospital WHERE hospital_area_id = #{areaId} LIMIT #{p.startPosition},#{p.pageSize}")
+    @Select("SELECT * FROM hospital WHERE hospital_area_id = #{areaId} AND is_delete = '0' LIMIT #{p.startPosition},#{p.pageSize}")
     List<Hospital> selectByAreaId(@Param("areaId")Integer areaId,@Param("p")Page page);
+    
+    @Select("SELECT * FROM hospital WHERE is_delete = '0' LIMIT #{p.startPosition},#{p.pageSize}")
+    List<Hospital> selectAllHospital(@Param("p")Page page);
 }

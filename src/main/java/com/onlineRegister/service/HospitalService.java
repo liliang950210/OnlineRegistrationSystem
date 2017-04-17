@@ -13,8 +13,10 @@ public interface HospitalService {
 	
 	public void deleteHospital(Long hospitalId);
 	
-	public List<Hospital> selectByName(String name);
+	public List<Hospital> selectByName(String name,Page page);
 	
 	public List<Hospital> selectByAreaId(Integer areaId,Page page);
+	
+	public List<Hospital> selectAll(Page page);
 
 }

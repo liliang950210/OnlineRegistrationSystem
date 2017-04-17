@@ -9,6 +9,8 @@ public class User {
 
     private Long patientId;
 
+    private String username;
+
     public Long getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class User {
 
     public void setPatientId(Long patientId) {
         this.patientId = patientId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 }

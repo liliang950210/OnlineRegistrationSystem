@@ -15,6 +15,8 @@ public class Order {
 
     private Long userId;
 
+    private Long patientId;
+
     public Long getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 }

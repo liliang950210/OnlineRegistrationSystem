@@ -39,14 +39,19 @@ public class HospitalServiceImp implements HospitalService{
 		
 	}
 
-	public List<Hospital> selectByName(String name) {
+	public List<Hospital> selectByName(String name,Page page) {
 		// TODO Auto-generated method stub
-		return hospitalMapper.selectByName(name);
+		return hospitalMapper.selectByName(name,page);
 	}
 
 	public List<Hospital> selectByAreaId(Integer areaId,Page page) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.selectByAreaId(areaId, page.getPage());
+	}
+
+	public List<Hospital> selectAll(Page page) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.selectAllHospital(page.getPage());
 	}
 
 	

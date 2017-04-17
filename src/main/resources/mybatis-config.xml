@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<settings>
+<setting name="mapUnderscoreToCamelCase" value="true" /><!-- 将下划线自动转为驼峰形式 -->
+<setting name="useGeneratedKeys" value="true" /><!--设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中 -->
+</settings>
+</configuration>
