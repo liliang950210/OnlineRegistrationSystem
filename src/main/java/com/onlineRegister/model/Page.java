@@ -2,23 +2,19 @@ package com.onlineRegister.model;
 
 public class Page {
 	
-	private Integer pageNumber;
-	private Integer pageSize;
+	private Integer page;
+	private Integer rows;
 	
 	private Integer startPosition;
 
-	
-	public Integer getPageNumber() {
-		return pageNumber;
+	public void setPage(Integer page) {
+		this.page = page;
 	}
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
+	public Integer getRows() {
+		return rows;
 	}
-	public Integer getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
+	public void setRows(Integer rows) {
+		this.rows = rows;
 	}
 	public Integer getStartPosition() {
 		return startPosition;
@@ -28,13 +24,14 @@ public class Page {
 	}
 	
 	/**
-	 * 计算其实位置，用page类之前必须调用
+	 * 璁＄畻鍏跺疄浣嶇疆锛岀敤page绫讳箣鍓嶅繀椤昏皟鐢�
 	 *@return
-	 * @author：chuankun 1095409267@qq.com
-	 * 2017年4月16日 下午5:05:16
+	 * @author锛歝huankun 1095409267@qq.com
+	 * 2017骞�4鏈�16鏃� 涓嬪崍5:05:16
 	 */
 	public Page getPage(){
-		startPosition = (pageNumber -1)* pageSize;
+		startPosition = (page -1)* rows;
 		return this;
 	}
+	
 }

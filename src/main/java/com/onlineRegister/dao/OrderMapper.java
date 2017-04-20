@@ -36,7 +36,7 @@ public interface OrderMapper {
  "(SELECT * FROM `order`)f"+
  "NATURAL JOIN"+
  "(SELECT id AS schedule_id,doctor_id,book_date,book_time,book_money FROM `schedule`) g"+
-"LIMIT #{startPosition},#{pageSize}")
+"LIMIT #{startPosition},#{rows}")
     List<Record> selectAllRecord(Page page);
     
     @Select("SELECT *"+
@@ -53,7 +53,7 @@ public interface OrderMapper {
     		 "(SELECT * FROM `order`WHERE id = #{id})f"+
     		 "NATURAL JOIN"+
     		 "(SELECT id AS schedule_id,doctor_id,book_date,book_time,book_money FROM `schedule`) g"+
-    		"LIMIT #{p.startPosition},#{p.pageSize}")
+    		"LIMIT #{p.startPosition},#{p.rows}")
     List<Record> selectByOrderId(@Param("id")Long id,@Param("p")Page page);
     
     @Select("SELECT *"+
@@ -70,7 +70,7 @@ public interface OrderMapper {
   		 "(SELECT * FROM `order`)f"+
   		 "NATURAL JOIN"+
   		 "(SELECT id AS schedule_id,doctor_id,book_date,book_time,book_money FROM `schedule`) g"+
-    		"LIMIT #{p.startPosition},#{p.pageSize}")
+    		"LIMIT #{p.startPosition},#{p.rows}")
     List<Record> selectByPatientId(@Param("patientId")Long patientId,@Param("p")Page page);
 }
 

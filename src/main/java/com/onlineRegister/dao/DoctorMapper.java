@@ -23,10 +23,10 @@ public interface DoctorMapper {
 
     int updateByPrimaryKey(Doctor record);
     
-    @Select("SELECT * FROM doctor WHERE is_delete = '0' LIMIT #{startPosition},#{pageNumber}")
+    @Select("SELECT * FROM doctor WHERE is_delete = '0' LIMIT #{startPosition},#{rows}")
     List<Doctor> selectAllDoctor(Page page);
     
-    @Select("SELECT * FROM doctor WHERE hospital_id = #{hospitalId} AND room_id = #{roomId} LIMIT #{p.startPosition},#{p.pageNumber}")
+    @Select("SELECT * FROM doctor WHERE hospital_id = #{hospitalId} AND room_id = #{roomId} LIMIT #{p.startPosition},#{p.rows}")
     List<Doctor> selectByHospitalAndRoom(@Param("hospitalId")Long hospitalId,@Param("roomId")Long roomId,@Param("p")Page page);
     
 }

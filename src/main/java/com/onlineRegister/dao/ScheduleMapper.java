@@ -21,11 +21,11 @@ public interface ScheduleMapper {
 
     int updateByPrimaryKey(Schedule record);
     
-    @Select("SELECT * FROM `schedule` WHERE is_delete = '0' LIMIT #{startPosition},#{pageNumber}")
+    @Select("SELECT * FROM `schedule` WHERE is_delete = '0' LIMIT #{startPosition},#{rows}")
     List<Schedule> selectAll(Page page);
     
     @Select("SELECT * FROM `schedule` WHERE doctor_id in("
     		+ "SELECT doctor_id FROM doctor WHERE hospital_id = #{hospitalId}"
-    		+ ")LIMIT #{startPosition},#{pageNumber}")
+    		+ ")LIMIT #{startPosition},#{rows}")
     List<Schedule> selectByHospitalId(@Param("hospitalId")Long hospitalId,@Param("p")Page page);
 }
